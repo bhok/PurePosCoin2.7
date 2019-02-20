@@ -107,6 +107,28 @@ public:
         nPruneAfterHeight = 100000;
 
         genesis = CreateGenesisBlock(1427729379, 1698442, 0x1e0fffff, 1);
+        
+         consensus.hashGenesisBlock = uint256S("0x0000045c4fb6799ddce4ad8c977f2ce968f8ea8edca25bd67072ac990562404d");
+        printf("min nBit:  %08x\n", UintToArith256(consensus.powLimit).GetCompact());
+
+ /*       if (false && genesis.GetHash() != consensus.hashGenesisBlock)
+                {
+                    printf("recalculating params for mainnet.\n");
+                    printf("old mainnet genesis nonce: %d\n", genesis.nNonce);
+                    printf("old mainnet genesis hash:  %s\n", consensus.hashGenesisBlock.ToString().c_str());
+
+                    // deliberately empty for loop finds nonce value.
+                    for(genesis.nNonce == 0; UintToArith256(genesis.GetHash()) > UintToArith256(consensus.powLimit); genesis.nNonce++){ 
+                        if(genesis.nNonce%1000000 == 0) { 
+                            printf("current mainnet genesis nonce: %d --> %s\n", genesis.nNonce, genesis.GetHash().ToString().c_str());
+                            
+                        };
+                    } 
+                    printf("new mainnet genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+                    printf("new mainnet genesis nonce: %d\n", genesis.nNonce);
+                    printf("new mainnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
+                }
+  */
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x0000005f6a28e686f641c616e56182d1b43afbe08a223f23bda23cdf9d55b882"));
         assert(genesis.hashMerkleRoot == uint256S("0x81d205aec871e7998b1313f195603159a2e6388ced896536dce76bf1410fc039"));
